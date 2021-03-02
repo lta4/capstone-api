@@ -11,9 +11,9 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
-    "graphql": "^15.5.0"
+    "graphql": "^15.5.0",
+    "graphql-playground-middleware-express": "^1.7.22"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lta4/capstone-api.git"

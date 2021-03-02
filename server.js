@@ -1,6 +1,7 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
+const expressPlayground = require("graphql-playground-middleware-express").default;
 // GraphQL schema
 const schema = buildSchema(`
     type Query {
@@ -146,6 +147,9 @@ app.use('/graphql' , graphqlHTTP({
     rootValue: root,
     graphiql: true
 }));
+
+//Graphql Playground route
+app.get("/playground", expressPlayground({ endpoint: "/graphql" }));
 
 const port = process.env.PORT || "4000";
 app.listen(port, () => console.log(`listening on: http://localhost:${port}/graphql`));
