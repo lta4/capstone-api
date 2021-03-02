@@ -1,10 +1,10 @@
 {
   "name": "capstone-api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +12,16 @@
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
     "graphql": "^15.5.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lta4/capstone-api.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/lta4/capstone-api/issues"
+  },
+  "homepage": "https://github.com/lta4/capstone-api#readme",
+  "description": ""
 }
