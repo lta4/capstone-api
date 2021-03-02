@@ -4,16 +4,16 @@ const { buildSchema } = require('graphql');
 // GraphQL schema
 const schema = buildSchema(`
     type Query {
-        course(id: Int!): Course
-        courses(topic: String): [Course]
+        quote(id: Int!): Quote
+        quotes(topic: String): [Quote]
         fav(id: Int!): Fav
         favorites(topic: String): [Fav]
     },
     type Mutation {
-        updateCourseTopic(id: Int!, topic: String!): Course
+        updateQuoteTopic(id: Int!, topic: String!): Quote
         updateFavTopic(id: Int!, topic: String!): Fav
     }
-    type Course {
+    type Quote {
         id: Int
         q: String
         a: String
@@ -29,7 +29,7 @@ const schema = buildSchema(`
     }
 `);
 
-const coursesData = [
+const quotesData = [
     {
         id: 1,
         q: "Quality means doing it right when no one is looking",
@@ -73,38 +73,44 @@ const favoritesData = [
         // url: ""
     }
 ]
+// Quote Functions
+
 // Get Function
-const getCourse = function(args) { 
+const getQuote = function(args) { 
     const id = args.id;
-    return coursesData.filter(course => {
-        return course.id == id;
+    return quotesData.filter(quote => {
+        return quote.id == id;
     })[0];
 }
-// Get Multiple Func
-const getCourses = function(args) {
+// Get Multiple Function
+const getQuotes = function(args) {
     if (args.topic) {
         const topic = args.topic;
-        return coursesData.filter(course => course.topic === topic);
+        return quotesData.filter(quote => quote.topic === topic);
     } else {
-        return coursesData;
+        return quotesData;
     }
 }
 // Update Function
-const updateCourseTopic = function({id, topic}) {
-    coursesData.map(course => {
-        if (course.id === id) {
-            course.topic = topic;
-            return course;
+const updateQuoteTopic = function({id, topic}) {
+    quotesData.map(quote => {
+        if (quote.id === id) {
+            quote.topic = topic;
+            return quote;
         }
     });
-    return coursesData.filter(course => course.id === id)[0];
+    return quotesData.filter(quote => quote.id === id)[0];
 }
+// Fav Functions
+
+// Get Function
 const getFav = function(args) { 
     const id = args.id;
     return favoritesData.filter(fav => {
         return fav.id == id;
     })[0];
 }
+// Get Multiple Function
 const getFavorites = function(args) {
     if (args.topic) {
         const topic = args.topic;
@@ -113,6 +119,7 @@ const getFavorites = function(args) {
         return favoritesData;
     }
 }
+// Update Fav Function
 const updateFavTopic = function({id, topic}) {
     favoritesData.map(fav => {
         if (fav.id === id) {
@@ -125,9 +132,9 @@ const updateFavTopic = function({id, topic}) {
 // Root resolver
 const root = {
     // message: () => 'Hello World!',
-    course: getCourse,
-    courses: getCourses,
-    updateCourseTopic: updateCourseTopic,
+    quote: getQuote,
+    quotes: getQuotes,
+    updateQuoteTopic: updateQuoteTopic,
     fav: getFav,
     favorites: getFavorites,
     updateFavTopic: updateFavTopic
